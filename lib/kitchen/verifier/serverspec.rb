@@ -286,8 +286,11 @@ module Kitchen
         info('Running Serverspec')
         if config[:default_pattern]
           if config[:remote_exec]
-            info("Using default pattern #{config[:root_path]}/suites/serverspec/*_spec.rb")
-            config[:patterns] = ["#{config[:root_path]}/suites/serverspec/*_spec.rb"]
+            info("Using default pattern #{config[:root_path]}/suites/serverspec/(localhost)?/*_spec.rb")
+            config[:patterns] = [
+              "#{config[:root_path]}/suites/serverspec/*_spec.rb",
+              "#{config[:root_path]}/suites/serverspec/localhost/*_spec.rb",
+            ]
           else
             info("Using default pattern #{config[:test_base_path]}/#{config[:suite_name]}/serverspec/*_spec.rb")
             config[:patterns] = ["#{config[:test_base_path]}/#{config[:suite_name]}/serverspec/*_spec.rb"]
